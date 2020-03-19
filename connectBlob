@@ -1,0 +1,8 @@
+#create secret with Azure console
+#create secret scope with <databricks url>#/secrets/createscope
+
+%python
+dbutils.fs.mount(
+  source = "wasbs://<containerName>@<blobName>.blob.core.windows.net",
+  mount_point = "/mnt/<mountName>",
+  extra_configs = {"fs.azure.account.key.<blobName>.blob.core.windows.net":dbutils.secrets.get(scope = <"secretScope">, key = <secretName>)})
