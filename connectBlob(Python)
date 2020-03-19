@@ -6,3 +6,10 @@ dbutils.fs.mount(
   source = "wasbs://<containerName>@<blobName>.blob.core.windows.net",
   mount_point = "/mnt/<mountName>",
   extra_configs = {"fs.azure.account.key.<blobName>.blob.core.windows.net":dbutils.secrets.get(scope = <"secretScope">, key = <secretName>)})
+
+#to get path
+%fs ls dbfs:/mnt/mountName
+
+#create df from csv file
+df = spark.read.text("/mnt/mountName/...")
+df = spark.read.text("dbfs:/mountName/...")
